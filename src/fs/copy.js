@@ -16,7 +16,7 @@ const copy = async () => {
   if (existsDestPath) throw new Error('FS operation failed');
 
   if (existsSourcePath && !existsDestPath) {
-    cp(sourcePath, destPath, { recursive: true }).then(() =>
+    await cp(sourcePath, destPath, { recursive: true }).then(() =>
       console.log('Files successfully copied')
     );
   } else {
