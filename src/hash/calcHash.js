@@ -1,6 +1,6 @@
 import { promises as fs } from 'fs';
 import { fileURLToPath } from 'url';
-import {createHash} from 'crypto'
+import { createHash } from 'crypto';
 import path from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -20,8 +20,6 @@ const calculateHash = async () => {
 
   const hasHex = hashObject.digest('hex');
   console.log(hasHex);
-
-
 };
 
 await calculateHash();

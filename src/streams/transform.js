@@ -12,7 +12,7 @@ const fileExists = async (path) => !!(await stat(path).catch((e) => false));
 const transform = async () => {
   const isFilePathExist = await fileExists(filePath);
   if (!isFilePathExist) throw new Error('FS operation failed');
-  console.log('Type text and press Enter:')
+  console.log('Type text and press Enter:');
   const reverseStream = new Transform({
     transform(chunk, _encoding, callback) {
       const reversedChunk =
