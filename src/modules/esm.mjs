@@ -9,17 +9,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const random = Math.random();
-let unknownObject;
-
-if (random > 0.5) {
-  unknownObject = JSON.parse(
-    await fs.readFile(path.join(__dirname, '/files', 'a.json'))
-  );
-} else {
-  unknownObject = JSON.parse(
-    await fs.readFile(path.join(__dirname, '/files', 'b.json'))
-  );
-}
+const unknownObject =
+  random > 0.5
+    ? JSON.parse(await fs.readFile(path.join(__dirname, '/files', 'a.json')))
+    : JSON.parse(await fs.readFile(path.join(__dirname, '/files', 'b.json')));
 
 console.log(`Release ${release()}`);
 console.log(`Version ${version()}`);
