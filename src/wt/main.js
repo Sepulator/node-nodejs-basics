@@ -28,16 +28,24 @@ const runWorkerThread = async (num) => {
 
 const performCalculations = async () => {
   const threadsNum = availableParallelism();
+  console.log('Availbale threads: ', threadsNum);
   const workerThreads = [];
 
   for (let i = 0; i < threadsNum; i++) {
-    const data = i + START_NUM;
-    const workerThread = await runWorkerThread(data);
+    const num = i + START_NUM;
+    const workerThread = await runWorkerThread(num);
     workerThreads.push(workerThread);
   }
 
   const results = await Promise.all(workerThreads);
-  console.log(results);
+  console.table(
+    results.map((value) => {
+      return {
+        'status': value.status,
+        'data': value.data,
+      };
+    })
+  );
 };
 
 await performCalculations();
