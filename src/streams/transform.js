@@ -16,7 +16,7 @@ const transform = async () => {
   const reverseStream = new Transform({
     transform(chunk, _encoding, callback) {
       const reversedChunk =
-        chunk.toString().split('').reverse().join('') + '\n';
+        chunk.toString().trim().split('').reverse().join('') + '\n';
       callback(null, reversedChunk);
     },
   });
