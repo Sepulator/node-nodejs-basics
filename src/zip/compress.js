@@ -4,12 +4,11 @@ import { createReadStream, createWriteStream } from 'fs';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import { fileExists } from '../utils/utils.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const sourcePath = path.join(__dirname, '/files', 'fileToCompress.txt');
 const destPath = path.join(__dirname, '/files', 'archive.gz');
-
-const fileExists = async (path) => !!(await stat(path).catch((e) => false));
 
 const compress = async () => {
   const isSourceFilePathExist = await fileExists(sourcePath);

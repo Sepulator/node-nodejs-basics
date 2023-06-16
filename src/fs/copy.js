@@ -1,13 +1,11 @@
-import { cp, stat } from 'fs/promises';
+import { cp } from 'fs/promises';
 import { fileURLToPath } from 'url';
+import { fileExists } from '../utils/utils.js';
 import path from 'path';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const sourcePath = path.join(__dirname, '/files');
 const destPath = path.join(__dirname, '/files_copy');
-
-const fileExists = async (path) => !!(await stat(path).catch((e) => false));
 
 const copy = async () => {
   const existsDestPath = await fileExists(destPath);

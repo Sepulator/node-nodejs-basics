@@ -1,13 +1,11 @@
-import { rename as renameFS, stat } from 'fs/promises';
+import { rename as renameFS } from 'fs/promises';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import { fileExists } from '../utils/utils.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const sourceFilePath = path.join(__dirname, '/files', 'wrongFilename.txt');
 const destFilePath = path.join(__dirname, '/files', 'properFilename.md');
-
-const fileExists = async (path) => !!(await stat(path).catch((e) => false));
 
 const rename = async () => {
   const isDestFileExist = await fileExists(destFilePath);

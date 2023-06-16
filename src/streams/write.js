@@ -3,11 +3,10 @@ import { createWriteStream } from 'fs';
 import { fileURLToPath } from 'url';
 import path from 'path';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const filePath = path.join(__dirname, '/files', 'fileToWrite.txt');
+import { fileExists } from '../utils/utils.js';
 
-const fileExists = async (path) => !!(await stat(path).catch((e) => false));
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const filePath = path.join(__dirname, '/files', 'fileToWrite.txt');
 
 const write = async () => {
   const isFilePathExist = await fileExists(filePath);
