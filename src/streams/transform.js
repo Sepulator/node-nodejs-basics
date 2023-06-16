@@ -1,4 +1,3 @@
-import { stat } from 'fs/promises';
 import { Transform } from 'stream';
 import { fileURLToPath } from 'url';
 import path from 'path';

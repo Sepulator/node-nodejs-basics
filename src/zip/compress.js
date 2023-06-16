@@ -1,4 +1,3 @@
-import { stat } from 'fs/promises';
 import { createGzip } from 'zlib';
 import { createReadStream, createWriteStream } from 'fs';
 import { fileURLToPath } from 'url';
