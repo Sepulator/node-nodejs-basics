@@ -1,5 +1,26 @@
+import { Transform } from 'stream';
+import { fileURLToPath } from 'url';
+import path from 'path';
+
+import { fileExists } from '../utils/utils.js';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const filePath = path.join(__dirname, '/files', 'fileToWrite.txt');
+
 const transform = async () => {
-    // Write your code here 
+  const isFilePathExist = await fileExists(filePath);
+  if (!isFilePathExist) throw new Error('FS operation failed');
+
+  console.log('Type text and press Enter:');
+  const reverseStream = new Transform({
+    transform(chunk, _encoding, callback) {
+      const reversedChunk =
+        chunk.toString().trim().split('').reverse().join('') + '\n';
+      callback(null, reversedChunk);
+    },
+  });
+
+  process.stdin.pipe(reverseStream).pipe(process.stdout);
 };
 
 await transform();
