@@ -2,10 +2,6 @@ import { writeFile } from 'fs/promises';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
-const fileName = 'fresh.txt';
-const text = 'I am fresh and young';
-const folder = 'files';
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
@@ -16,10 +12,10 @@ const create = async (fileName, folderName, text) => {
 
     await writeFile(filePath, text, 'utf-8');
 
-    console.log(`✅ Successfully wrote to ${filePath}`);
+    console.log(`✅ Successfully wrote to ${fileName}`);
   } catch (error) {
-    console.error(`FS operation failed`);
+    console.error(`⚠️  FS operation failed: ${error.message}`);
   }
 };
 
-await create(fileName, folder, text);
+await create('fresh.txt', 'files', 'I am fresh and young');
