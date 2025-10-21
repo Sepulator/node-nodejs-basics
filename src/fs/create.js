@@ -4,18 +4,16 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const filePath = join(__dirname, 'files', 'fresh.txt');
 
-const create = async (fileName, folderName, text) => {
+const create = async (filePath, text) => {
   try {
-    const folderPath = join(__dirname, folderName);
-    const filePath = join(folderPath, fileName);
+    await writeFile(filePath, text, { encoding: 'utf-8', flag: 'wx' });
 
-    await writeFile(filePath, text, 'utf-8');
-
-    console.log(`✅ Successfully wrote to ${fileName}`);
+    console.log('✅ Successfully wrote');
   } catch (error) {
-    console.error(`⚠️  FS operation failed: ${error.message}`);
+    console.error(`⚠️ FS operation failed: ${error.message}`);
   }
 };
 
-await create('fresh.txt', 'files', 'I am fresh and young');
+await create(filePath, 'I am fresh and young');

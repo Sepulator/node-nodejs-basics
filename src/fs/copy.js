@@ -4,18 +4,17 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+const folderPath = join(__dirname, 'files');
+const folderPathCopy = join(__dirname, 'files_copy');
 
-const copy = async (folder, folderCopy) => {
+const copy = async (folderPath, folderPathCopy) => {
   try {
-    const folderPath = join(__dirname, folder);
-    const folderPathCopy = join(__dirname, folderCopy);
-
     await stat(folderPath);
 
     try {
       await stat(folderPathCopy);
 
-      throw new Error(`Destination folder '${folderCopy}' already exists.`);
+      throw new Error(`Destination folder '${folderPathCopy}' already exists.`);
     } catch (err) {
       if (err.code !== 'ENOENT') {
         throw err;
@@ -26,8 +25,8 @@ const copy = async (folder, folderCopy) => {
 
     console.log('✅ Successfully copied');
   } catch (error) {
-    console.error(`⚠️  FS operation failed: ${error.message}`);
+    console.error(`⚠️ FS operation failed: ${error.message}`);
   }
 };
 
-await copy('files', 'files_copy');
+await copy(folderPath, folderPathCopy);
