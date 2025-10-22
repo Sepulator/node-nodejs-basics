@@ -1,4 +1,3 @@
-import { stdout } from 'process';
 import { fileURLToPath } from 'url';
 import { createHash } from 'crypto';
 import { join, dirname } from 'path';
