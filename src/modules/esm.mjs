@@ -1,7 +1,7 @@
 import { sep, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { release, type, version } from 'node:os';
-import { createServer as createServerHttp } from 'node:http';
+import { release, type, version } from 'os';
+import { createServer as createServerHttp } from 'http';
 
 import './files/c.cjs';
 
