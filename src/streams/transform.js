@@ -14,7 +14,7 @@ const transform = async () => {
   try {
     pipeline(stdin, reverse, stdout);
   } catch (error) {
-    console.error(`⚠️Error transforming stream: ${error.message}`);
+    console.error(`⚠️ Error transforming stream: ${error.message}`);
   }
 };
 

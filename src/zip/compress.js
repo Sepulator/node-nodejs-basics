@@ -13,11 +13,11 @@ const compress = async (filePathSource, filePathDestination) => {
   try {
     const gzip = createGzip();
     const source = createReadStream(filePathSource);
-    const destination = createWriteStream(filePathDestination, { flags: 'w' });
+    const destination = createWriteStream(filePathDestination);
     await pipeline(source, gzip, destination);
     console.log('✅ File successfully compressed');
   } catch (error) {
-    console.error(`⚠️Error transforming stream: ${error.message}`);
+    console.error(`⚠️ Error compressing: ${error.message}`);
   }
 };
 

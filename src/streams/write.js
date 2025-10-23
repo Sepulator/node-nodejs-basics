@@ -22,7 +22,7 @@ const write = async (filePath) => {
       process.exit();
     });
   } catch (error) {
-    console.error(`⚠️Error writing file: ${error.message}`);
+    console.error(`⚠️ Error writing file: ${error.message}`);
   }
 };
 
