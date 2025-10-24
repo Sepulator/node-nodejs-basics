@@ -1,5 +1,16 @@
+import { argv } from 'process';
+
 const parseArgs = () => {
-  // Write your code here
+  const args = argv.slice(2);
+  const formatted = [];
+
+  for (let index = 0; index < args.length; index += 2) {
+    if (args[index].startsWith('--')) {
+      formatted.push(`${args[index].slice(2)} is ${args[index + 1]}`);
+    }
+  }
+
+  console.log(formatted.join(', '));
 };
 
 parseArgs();
